@@ -1,5 +1,9 @@
-# BCS23-Gartner-Talatala-Ubungen
-BitPredict: Digital Currency Insight Program
+# BitPredict: Digital Currency Insight Program
+Members:
+1. Gartner, Markus Ivan
+2. Talatala, Jeremie Leo
+3. Ubungen, John Daniel
+
 
 Objectives of the Project
 

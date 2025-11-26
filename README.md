@@ -74,7 +74,13 @@ The project will be made entirely in Python. Core libraries will be used to run 
 ## Week 7 (Oct 12-18) → Midterm Break  
 - [x] **Paused project development** to focus on Midterm Examinations.
 
-## Week 8 (Oct 19-25)
+## Week 8 (Oct 19-25) → Thesis Guidelines & Repo Update  
+- [x] **Resumed project development** following Midterm Examinations.
+- [x] Updated the repository `README.md` to include the full **Project Proposal**.
+- [x] Reviewed and documented the **Final Thesis Paper Guidelines**:
+  - **Paper Structure:** Introduction, Objectives, Related Work, Methodology (Discrete Concepts), Prototype Design, Results/Findings, Conclusion, and References (min. 3 sources).
+  - **Prototype Requirement:** Must present a working simulation addressing the 3 core features.
+  - **Presentation Format:** 10–15 minute presentation covering background, problems, discrete concepts, prototype, and results.
 
  
 

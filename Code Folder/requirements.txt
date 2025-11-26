@@ -1,0 +1,6 @@
+ccxt
+networkx
+numpy
+pandas
+matplotlib
+streamlit

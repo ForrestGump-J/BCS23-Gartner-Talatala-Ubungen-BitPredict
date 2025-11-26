@@ -31,10 +31,15 @@ The project will be made entirely in Python. Core libraries will be used to run 
   - Fake News Detection in Social Network
   - Airline and Delivery Scheduling
   - Cryptocurrency Prediction Program
-- [x] **Final Decision:** Selected **Cryptocurrency Prediction Program** as the main project.
+- [x] **All members** chose **Cryptocurrency Prediction Program** as the main project.
 
 ## Week 2 (Sept 9-15) → Research Concepts  
 - [x] Researched specific **Discrete Structures concepts** applicable to the Cryptocurrency Prediction Program.
 - [x] Investigated mathematical models and algorithms suitable for analyzing market trends.
+
+## Week 3 (Sept 16-22) → Project Draft Finalization
+- [x] Finalized the draft of **Discrete Structures concepts** to be integrated into the project.
+- [x] **Project Confirmation:** Officially locked in the **Cryptocurrency Prediction Program** as the final topic.
+- [x] Confirmed **Python** as the primary language for implementation.
  
 

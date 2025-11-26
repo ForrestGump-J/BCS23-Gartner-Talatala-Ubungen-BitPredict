@@ -32,5 +32,5 @@ The project will be made entirely in Python. Core libraries will be used to run 
   - Airline and Delivery Scheduling
   - Cryptocurrency Prediction Program
 - [x] **Final Decision:** Selected **Cryptocurrency Prediction Program** as the main project.
-- [ ] 
+ 
 

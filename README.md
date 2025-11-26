@@ -59,7 +59,7 @@ The project will be made entirely in Python. Core libraries will be used to run 
   - **Functions:** Mapping input-output values for supply data.
   - **Set Theory:** Grouping cryptocurrencies based on movement trends.
   - *(Note: Explicitly excluded Number Theory, Automata Theory, and Advanced Counting from scope).*
-- [x] **Defined the Python Technical Stack:**
+- [x] **Libraries for Python Tech Stack:**
   - **NetworkX & Matplotlib:** For managing and visualizing crypto correlation graphs.
   - **NumPy:** For calculating moving averages and percent changes.
   - **Itertools:** For handling portfolio combinations.

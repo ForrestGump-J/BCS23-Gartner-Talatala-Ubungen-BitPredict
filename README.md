@@ -33,6 +33,8 @@ The project will be made entirely in Python. Core libraries will be used to run 
   - Cryptocurrency Prediction Program
 - [x] **Final Decision:** Selected **Cryptocurrency Prediction Program** as the main project.
 
-## Week 2 (Sept 9-15) →  
+## Week 2 (Sept 9-15) → Research Concepts  
+- [x] Researched specific **Discrete Structures concepts** applicable to the Cryptocurrency Prediction Program.
+- [x] Investigated mathematical models and algorithms suitable for analyzing market trends.
  
 

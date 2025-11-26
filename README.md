@@ -81,6 +81,12 @@ The project will be made entirely in Python. Core libraries will be used to run 
   - **Paper Structure:** Introduction, Objectives, Related Work, Methodology (Discrete Concepts), Prototype Design, Results/Findings, Conclusion, and References (min. 3 sources).
   - **Prototype Requirement:** Must present a working simulation addressing the 3 core features.
   - **Presentation Format:** 10–15 minute presentation covering background, problems, discrete concepts, prototype, and results.
+    
+## Week 9 (Oct 26-Nov 1) → Project Planning & Deadlines  
+- [x] **Established internal project milestones:**
+  - Deadline for **Final Thesis Paper**
+  - Deadline for **Prototype Code** completion
+  - Deadline for **Presentation Slides** preparation
 
  
 

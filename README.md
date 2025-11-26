@@ -65,5 +65,10 @@ The project will be made entirely in Python. Core libraries will be used to run 
   - **Itertools:** For handling portfolio combinations.
   - **Pandas:** For seamless data handling and manipulation.
   - **CCXT API:** Integrated for retrieving **live cryptocurrency prices** (replacing static sample data).
+
+## Week 6 (Oct 7–13) → Repo Setup 
+- [x] **Created the GitHub Repository** for BitPredict.
+- [x] Added Collaborators or members of the group in Discrete Structures.
+- [x] Initialized the project structure and created a dedicated code folder for the **program prototype**.
  
 

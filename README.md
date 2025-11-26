@@ -26,11 +26,13 @@ The project will be made entirely in Python. Core libraries will be used to run 
 # Project Timeline for BitPredict  
 ### Week 1 (Sept 2–8) → Ideation & Selection
 - [x] **Brainstormed ideas** for the Discrete Structures final project.
-- [x] Created a Google Doc to organize 3 project proposals, relevant Discrete Structures concepts, and selected **Python** as the development language.
+- [x] Created a Google Doc to organize 3 applied-real life project ideas, relevant Discrete Structures concepts, and selected **Python** as the development language.
 - [x] Evaluate 3 potential project ideas:
   - Fake News Detection in Social Network
   - Airline and Delivery Scheduling
   - Cryptocurrency Prediction Program
 - [x] **Final Decision:** Selected **Cryptocurrency Prediction Program** as the main project.
+
+### Week 2 (Sept 9-15) →  
  
 

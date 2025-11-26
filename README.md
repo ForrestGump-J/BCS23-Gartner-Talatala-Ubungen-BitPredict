@@ -21,5 +21,7 @@ The project covers the following concepts in Discrete Structures 1, namely: grap
 
 ## Programming Language
 
-The project will be made entirely in Python. Core libraries will be used to run the program, and it will use NetworkX and Matplotlib to create and manage crypto correlation graphs (nodes/edges). It will also use Numpy to calculate moving averages, percent changes, and other operations, as well as Itertools for portfolio combinations. Additionally, Pandas will be used for smooth data handling for all imports that will be used. Lastly, for live prices of coins, we will import a cryptocurrency API called CCXT or CryptoCurrency eXchange Trading instead of having sample prices.
+The project will be made entirely in Python. Core libraries will be used to run the program, and it will use NetworkX and Matplotlib to create and manage crypto correlation graphs (nodes/edges). It will also use Numpy to calculate moving averages, percent changes, and other operations, as well as Itertools for portfolio combinations. Additionally, Pandas will be used for smooth data handling for all imports that will be used. Lastly, for live prices of coins, we will import a cryptocurrency API called CCXT or CryptoCurrency eXchange Trading instead of having sample prices.  
+
+#Project Timeline for BitPredict
 

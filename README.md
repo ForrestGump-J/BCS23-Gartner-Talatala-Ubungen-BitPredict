@@ -49,5 +49,21 @@ The project will be made entirely in Python. Core libraries will be used to run 
   - Scope and Limitations of the Project
   - Programming Language
 - [x] Prepared and submitted the hard copy of the proposal to the professor in week 5 or 6
+
+## Week 5 (Sept 30-Oct 6) → Proposal Finalization & Tech Stack 
+- [x] **Finalized Project Proposal** by integrating specific Discrete Structures concepts:
+  - **Graph Theory:** Analyzing connections between different cryptocurrencies (Nodes/Edges).
+  - **Combinatorics:** Calculating possible investment combinations for user portfolios.
+  - **Boolean Algebra:** Logic for decision-making and trend classification (Upward/Downward/Neutral).
+  - **Recurrence Relations:** Handling repeated calculations like moving averages.
+  - **Functions:** Mapping input-output values for supply data.
+  - **Set Theory:** Grouping cryptocurrencies based on movement trends.
+  - *(Note: Explicitly excluded Number Theory, Automata Theory, and Advanced Counting from scope).*
+- [x] **Defined the Python Technical Stack:**
+  - **NetworkX & Matplotlib:** For managing and visualizing crypto correlation graphs.
+  - **NumPy:** For calculating moving averages and percent changes.
+  - **Itertools:** For handling portfolio combinations.
+  - **Pandas:** For seamless data handling and manipulation.
+  - **CCXT API:** Integrated for retrieving **live cryptocurrency prices** (replacing static sample data).
  
 

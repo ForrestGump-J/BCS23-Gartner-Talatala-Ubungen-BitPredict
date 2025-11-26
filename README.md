@@ -69,6 +69,12 @@ The project will be made entirely in Python. Core libraries will be used to run 
 ## Week 6 (Oct 5–11) → Repo Setup 
 - [x] **Created the GitHub Repository** for BitPredict.
 - [x] Added Collaborators or members of the group in Discrete Structures.
-- [x] Initialized the project structure and created a dedicated code folder for the **program prototype**. 
+- [x] Initialized the project structure and created a dedicated code folder for the **program prototype**.
+
+## Week 7 (Oct 12-18) → Midterm Break  
+- [x] **Paused project development** to focus on Midterm Examinations.
+
+## Week 8 (Oct 19-25)
+
  
 

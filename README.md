@@ -41,5 +41,13 @@ The project will be made entirely in Python. Core libraries will be used to run 
 - [x] Finalized the draft of **Discrete Structures concepts** to be integrated into the project.
 - [x] **Project Confirmation:** Officially locked in the **Cryptocurrency Prediction Program** as the final topic.
 - [x] Confirmed **Python** as the primary language for implementation.
+
+## Week 4 (Sept 23-29) → Project Proposal
+- [x] Finalized the official project name: **"BitPredict: Digital Currency Insight Program"**.
+- [x] Created the **Project Proposal** document containing:
+  - Objectives of the project
+  - Scope and Limitations of the Project
+  - Programming Language
+- [x] Prepared and submitted the hard copy of the proposal to the professor in week 5 or 6
  
 

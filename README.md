@@ -92,6 +92,7 @@ The project will be made entirely in Python. Core libraries will be used to run 
   - **All Members:** Conclusion, References.
   - *(Note: Primary owners assigned, but team will assist across all sections).*
 - [x] **Defined Coding Strategy:** Adopted a collaborative approach where all members contribute to the prototype code (specific module ownership TBD).
+- [X] Added a Tab in the Google Docs for **Final Thesis Paper**
 
  
 

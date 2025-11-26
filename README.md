@@ -82,11 +82,16 @@ The project will be made entirely in Python. Core libraries will be used to run 
   - **Prototype Requirement:** Must present a working simulation addressing the 3 core features.
   - **Presentation Format:** 10–15 minute presentation covering background, problems, discrete concepts, prototype, and results.
     
-## Week 9 (Oct 26-Nov 1) → Project Planning & Deadlines  
-- [x] **Established internal project milestones:**
-  - Deadline for **Final Thesis Paper**
-  - Deadline for **Prototype Code** completion
-  - Deadline for **Presentation Slides** preparation
+## Week 9 (Oct 26-Nov 1) → Planning & Task Allocation  
+- [x] **Established project deadlines:**
+  - Deadlines set for Paper, Prototype Code, and Presentation Slides.
+- [x] **Assigned Research Paper sections:**
+  - **Gartner, Markus Ivan:** Introduction, Results/Findings.
+  - **Ubungen, John Daniel:** Related Work, Prototype Design.
+  - **Talatala, Jeremie Leo:** Objectives, Methodology.
+  - **All Members:** Conclusion, References.
+  - *(Note: Primary owners assigned, but team will assist across all sections).*
+- [x] **Defined Coding Strategy:** Adopted a collaborative approach where all members contribute to the prototype code (specific module ownership TBD).
 
  
 

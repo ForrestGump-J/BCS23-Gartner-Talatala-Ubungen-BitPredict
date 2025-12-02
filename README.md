@@ -94,5 +94,9 @@ The project will be made entirely in Python. Core libraries will be used to run 
 - [x] **Defined Coding Strategy:** Adopted a collaborative approach where all members contribute to the prototype code (specific module ownership TBD).
 - [X] Added a Tab in the Google Docs for **Final Thesis Paper**
 
+## Week 10 (Nov 2-Nov 8) → Thesis Writing  
+- [x] **Progress on the Research Thesis Paper.**
+- [x] Conducted detailed research and began writing for individually assigned sections (Introduction, Methodology, Related Work, etc.).
+
  
 

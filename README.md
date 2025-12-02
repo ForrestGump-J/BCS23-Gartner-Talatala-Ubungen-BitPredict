@@ -98,5 +98,10 @@ The project will be made entirely in Python. Core libraries will be used to run 
 - [x] **Progress on the Research Thesis Paper.**
 - [x] Conducted detailed research and began writing for individually assigned sections (Introduction, Methodology, Related Work, etc.).
 
+## Week 11 (Nov 9-Nov 15) → Progress on Thesis Writing  
+- [x] **Added more information on the Research Thesis Paper.**
+- [x] In-text Citations, Bold Text on important text are added.
+- [ ] Progress with Text Already: Introduction, Objectives, Related Works, Methodology
+
  
 

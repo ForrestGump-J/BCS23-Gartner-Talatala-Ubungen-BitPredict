@@ -1,4 +1,14 @@
-# BitPredict: Digital Currency Insight Program
+# BitPredict: Digital Currency Insight Program  
+
+## Requirements  
+Python 3.11.x  
+Streamlit  
+CCXT  
+Matplotlib  
+NetworkX  
+Numpy  
+Pandas  
+
 # BitPredict Project Proposal
 Members:
 1. Gartner, Markus Ivan

@@ -8,6 +8,10 @@ Matplotlib
 NetworkX  
 Numpy  
 Pandas  
+## Instructions  
+1. Clone the reposition to your computer.
+2. Run requirements.txt (located in Code Folder) in command prompt by typing py -m pip install -r, then drag and drop reruirements.txt into command propmt so the filepath is perfectly copied.
+3. Press enter.
 
 # BitPredict Project Proposal
 Members:

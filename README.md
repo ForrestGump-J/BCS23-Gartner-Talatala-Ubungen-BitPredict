@@ -111,5 +111,11 @@ The project will be made entirely in Python. Core libraries will be used to run 
   - **Methodology:** Defined key terms and explicitly mapped them to the code implementation.
   - **References:** Added more credible citations to support the research.
 
+## Week 13 (Nov 23–Nov 29) → Finalizing Objectives
+- [x] **Significantly revised the "Objectives" section** of the thesis to include specific technical solutions:
+  - **Addressing Market Unpredictability:** Specified the method of collecting **7 days of OHLCV data** via the **CCXT** library to classify coin trajectories.
+  - **Addressing Portfolio Confusion:** detailed the use of **Combinatorics** to calculate optimal portfolio combinations, citing similar methodologies used by *Puerto et al. (2021)*.
+  - **Addressing Connection Identification:** Explained the application of **Graph Theory** (where nodes = coins, edges = correlation strength) to reveal market dependencies, citing *Nguyen et al. (2023)*.
+
  
 

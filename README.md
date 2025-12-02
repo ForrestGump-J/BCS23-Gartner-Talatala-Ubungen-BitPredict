@@ -103,7 +103,7 @@ The project will be made entirely in Python. Core libraries will be used to run 
 - [x] In-text Citations, Bold Text on important text are added.
 - [x] Progress with Text Already: Introduction, Objectives, Related Works, Methodology
 
-## Week 12 (Nov 16-Nov22) → Paper Refinement  
+## Week 12 (Nov 16-Nov 22) → Paper Refinement  
 - [x] **Refined and expanded the Research Paper:**
   - **Introduction:** Added comprehensive background information.
   - **Objectives:** Refined and sharpened specific project goals.

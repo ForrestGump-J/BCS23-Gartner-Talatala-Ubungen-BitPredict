@@ -1,4 +1,5 @@
 # BitPredict: Digital Currency Insight Program
+# BitPredict Project Proposal
 Members:
 1. Gartner, Markus Ivan
 2. Talatala, Jeremie Leo
@@ -93,6 +94,43 @@ The project will be made entirely in Python. Core libraries will be used to run 
   - *(Note: Primary owners assigned, but team will assist across all sections).*
 - [x] **Defined Coding Strategy:** Adopted a collaborative approach where all members contribute to the prototype code (specific module ownership TBD).
 - [X] Added a Tab in the Google Docs for **Final Thesis Paper**
+
+## Week 10 (Nov 2-Nov 8) → Thesis Writing  
+- [x] **Progress on the Research Thesis Paper.**
+- [x] Conducted detailed research and began writing for individually assigned sections (Introduction, Methodology, Related Work, etc.).
+
+## Week 11 (Nov 9-Nov 15) → Progress on Thesis Writing  
+- [x] **Added more information on the Research Thesis Paper.**
+- [x] In-text Citations, Bold Text on important text are added.
+- [x] Progress with Text Already: Introduction, Objectives, Related Works, Methodology
+
+## Week 12 (Nov 16-Nov 22) → Paper Refinement  
+- [x] **Refined and expanded the Research Paper:**
+  - **Introduction:** Added comprehensive background information.
+  - **Objectives:** Refined and sharpened specific project goals.
+  - **Related Works:** Integrated additional research on existing cryptocurrency prediction applications.
+  - **Methodology:** Defined key terms and explicitly mapped them to the code implementation.
+  - **References:** Added more credible citations to support the research.
+
+## Week 13 (Nov 23–Nov 29) → Finalizing Objectives
+- [x] **Significantly revised the "Objectives" section** of the thesis to include specific technical solutions:
+  - **Addressing Market Unpredictability:** Specified the method of collecting **7 days of OHLCV data** via the **CCXT** library to classify coin trajectories.
+  - **Addressing Portfolio Confusion:** detailed the use of **Combinatorics** to calculate optimal portfolio combinations, citing similar methodologies used by *Puerto et al. (2021)*.
+  - **Addressing Connection Identification:** Explained the application of **Graph Theory** (where nodes = coins, edges = correlation strength) to reveal market dependencies, citing *Nguyen et al. (2023)*.
+     
+## Week 14 (Nov 30-Dec 6) → Start Implementation of BitPredict  
+- [x] **Started Coding Phase:** Started writing the core logic for the **BitPredict** application.
+- [x] Pushed initial code structure and import statements to the GitHub repository.
+- [x] **Defined Dependencies:** Created and pushed `requirements.txt` containing the necessary Python libraries:
+  - `ccxt` (Crypto market data)
+  - `networkx` (Graph creation)
+  - `numpy` (Mathematical operations)
+  - `pandas` (Data handling)
+  - `matplotlib` (Plotting graphs)
+  - `streamlit` (Web interface/Dashboard)
+- [x] Added Instructions on how to run code in ReadMe:
+     
+  
 
  
 

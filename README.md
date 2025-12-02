@@ -101,7 +101,15 @@ The project will be made entirely in Python. Core libraries will be used to run 
 ## Week 11 (Nov 9-Nov 15) → Progress on Thesis Writing  
 - [x] **Added more information on the Research Thesis Paper.**
 - [x] In-text Citations, Bold Text on important text are added.
-- [ ] Progress with Text Already: Introduction, Objectives, Related Works, Methodology
+- [x] Progress with Text Already: Introduction, Objectives, Related Works, Methodology
+
+## Week 12 (Nov 16-Nov22) → Paper Refinement  
+- [x] **Refined and expanded the Research Paper:**
+  - **Introduction:** Added comprehensive background information.
+  - **Objectives:** Refined and sharpened specific project goals.
+  - **Related Works:** Integrated additional research on existing cryptocurrency prediction applications.
+  - **Methodology:** Defined key terms and explicitly mapped them to the code implementation.
+  - **References:** Added more credible citations to support the research.
 
  
 

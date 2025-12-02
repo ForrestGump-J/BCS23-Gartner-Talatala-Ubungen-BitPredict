@@ -1,4 +1,3 @@
-
 # BitPredict: Digital Currency Insight Program
 # BitPredict Project Proposal
 Members:

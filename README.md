@@ -1,4 +1,6 @@
+
 # BitPredict: Digital Currency Insight Program
+# BitPredict Project Proposal
 Members:
 1. Gartner, Markus Ivan
 2. Talatala, Jeremie Leo

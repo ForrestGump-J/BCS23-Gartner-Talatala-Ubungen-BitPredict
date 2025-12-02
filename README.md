@@ -139,6 +139,7 @@ The project will be made entirely in Python. Core libraries will be used to run 
   - `matplotlib` (Plotting graphs)
   - `streamlit` (Web interface/Dashboard)
 - [x] Added Instructions on how to run code in ReadMe:
+- [x] Created working prototype with graphs, dataframes, and input
      
   
 

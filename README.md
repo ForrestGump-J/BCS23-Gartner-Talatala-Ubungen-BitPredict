@@ -127,7 +127,7 @@ The project will be made entirely in Python. Core libraries will be used to run 
   - `pandas` (Data handling)
   - `matplotlib` (Plotting graphs)
   - `streamlit` (Web interface/Dashboard)
-- [x] :
+- [x] Added Instructions on how to run code in ReadMe:
      
   
 

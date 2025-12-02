@@ -116,6 +116,20 @@ The project will be made entirely in Python. Core libraries will be used to run 
   - **Addressing Market Unpredictability:** Specified the method of collecting **7 days of OHLCV data** via the **CCXT** library to classify coin trajectories.
   - **Addressing Portfolio Confusion:** detailed the use of **Combinatorics** to calculate optimal portfolio combinations, citing similar methodologies used by *Puerto et al. (2021)*.
   - **Addressing Connection Identification:** Explained the application of **Graph Theory** (where nodes = coins, edges = correlation strength) to reveal market dependencies, citing *Nguyen et al. (2023)*.
+     
+## Week 14 (Nov 30-Dec 6) → Start Implementation of BitPredict  
+- [x] **Started Coding Phase:** Started writing the core logic for the **BitPredict** application.
+- [x] Pushed initial code structure and import statements to the GitHub repository.
+- [x] **Defined Dependencies:** Created and pushed `requirements.txt` containing the necessary Python libraries:
+  - `ccxt` (Crypto market data)
+  - `networkx` (Graph creation)
+  - `numpy` (Mathematical operations)
+  - `pandas` (Data handling)
+  - `matplotlib` (Plotting graphs)
+  - `streamlit` (Web interface/Dashboard)
+- [x] :
+     
+  
 
  
 

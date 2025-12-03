@@ -9,7 +9,7 @@ NetworkX
 Numpy  
 Pandas  
 ## Instructions  
-1. Clone the repository to your computer.
+1. Clone the repository, download as ZIP and Extract All in your computer.
 2. Run requirements.txt (located in Code Folder) in command prompt by typing py -m pip install -r, then drag and drop requirements.txt into command prompt so the filepath is perfectly copied.
 3. Press enter.
 

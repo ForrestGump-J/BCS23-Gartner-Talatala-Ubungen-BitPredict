@@ -20,7 +20,8 @@ def fetch_30day_data(symbol):
 
 def classify_trend(df):
     df["pct_change"] = df["close"].pct_change()
-    avg_change = df["pct_change"].sum()
+    avg_change = (1 + df["pct_change"]).prod() - 1
+
 
     if avg_change >= MOVEMENT_THRESHOLD:
         return "BULL"
@@ -54,8 +55,14 @@ def show_graph(g):
     st.pyplot(fig)
 
 def get_portfolio_combos():
-    combinations = list(itertools.combinations(COINS, 2))
+    combinations = []
+    for r in range(1, len(COINS)+1):
+        combinations.extend(itertools.combinations(COINS, r))
     return combinations
+
+def score_combination(combo, trend_map):
+    score_map = {"BULL": 1, "STABLE": 0, "BEAR": -1}
+    return sum(score_map[trend_map[c]] for c in combo)
 
 def main():
     st.title("BitPredict: Digital Currency Insight Program")
@@ -63,7 +70,7 @@ def main():
 
     st.write("Fetching data...")
 
-    option = st.selectbox("Which coin would you like to view the data?",COINS,index=None,placeholder="Select a cryptocuency.")
+    option = st.selectbox("Which coin would you like to view the data?",COINS,index=None,placeholder="Select a cryptocurrency.")
 
     st.write("Displaying data for:",option)
 
@@ -84,8 +91,13 @@ def main():
         st.subheader(f"30-Day Trend for {option}")
         st.write(f"**Trend Classification**: {trend}")
 
+        avg_change = round((((1 + df["pct_change"]).prod() - 1) * 100), 3)
+        st.write(f"Total gain-loss percentage across 30 days: {avg_change}%")
+
         st.line_chart(df_display["close"])
         st.dataframe(df_display)
+
+        
 
     price_data = {}
     trend_classification = {}
@@ -116,9 +128,30 @@ def main():
     st.subheader("Want to see possible portfolio combinations?")
     if st.button("Show", type="primary"):
         combos = get_portfolio_combos()
-        for c in combos:
-            st.write(c)
+        best_score = -999
+        best_com = []
+        for co in combos:
+            sc = score_combination(co, trend_classification)
+            st.write(f"{co} - Score: {sc}")
 
+            if sc > best_score:
+                best_score = sc
+                best_com = [co]
+            elif sc == best_score:
+                best_com.append(co)
+        
+        st.subheader("Recommendation:")
+        best_pretty = [", ".join(c) for c in best_com]
 
+        bulls = {c for c, t in trend_classification.items() if t == "BULL"}
+
+        if best_score < 0:
+            st.error("Do not buy any coins. Market not safe.")
+        elif best_score == 0 and len(bulls) == 0:
+            st.warning(f"Best recommendation: {best_pretty}, but buy at your own risk. Market is unsafe.")
+        else:
+            st.success(f"Best recommendation: {best_pretty} (Score: {best_score})")
+            
+        
 if __name__ == "__main__":
     main()

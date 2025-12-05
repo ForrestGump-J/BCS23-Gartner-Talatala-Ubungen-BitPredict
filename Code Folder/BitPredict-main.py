@@ -5,6 +5,17 @@ import pandas as pd
 import numpy as np
 import itertools
 import matplotlib.pyplot as plt
+import pathlib
+
+
+def load_css(name):
+    base = pathlib.Path(__file__).parent
+    css_path = base / name
+    with open(css_path, "r") as f:
+        st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
+
+load_css("style.css")
 
 exchange = ccxt.binanceus({
     "enableRateLimit": True,

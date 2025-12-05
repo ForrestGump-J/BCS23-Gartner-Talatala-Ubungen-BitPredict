@@ -7,6 +7,7 @@ import itertools
 import matplotlib.pyplot as plt
 import pathlib
 
+st.set_page_config(layout="centered")
 
 def load_css(name):
     base = pathlib.Path(__file__).parent
@@ -77,11 +78,11 @@ def score_combination(combo, trend_map):
 
 def main():
     st.title("BitPredict: Digital Currency Insight Program")
-    st.write("Cryptocurrency Prediction Software Prototype\n\n")
+    st.subheader("Cryptocurrency Prediction Software Prototype\n\n")
 
     st.write("Fetching data...")
 
-    option = st.selectbox("Which coin would you like to view the data?",COINS,index=None,placeholder="Select a cryptocurrency.")
+    option = st.selectbox("",COINS,index=None,placeholder="Select a cryptocurrency to analyze.")
 
     st.write("Displaying data for:",option)
 
@@ -135,7 +136,11 @@ def main():
         show_graph(gra)
 
         st.subheader("Want to see possible portfolio combinations?")
-        if st.button("Show", type="primary"):
+        col1, col2, col3, col4, col5, col6, col7, col8, col9= st.columns([1, 1, 1, 1, 1, 1, 1, 1, 1])
+        with col5:
+            show_combinations = st.button("Show", type="primary")
+
+        if show_combinations:
             combos = get_portfolio_combos()
             best_score = -999
             best_com = []

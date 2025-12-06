@@ -157,7 +157,16 @@ def main():
             best_com = []
             for co in combos:
                 sc = score_combination(co, trend_classification)
-                st.write(f"{co} - Score: {sc}")
+                combo_name = " + ".join(co)
+                st.markdown(
+                    f"""
+                    <div class="combo-row">
+                        <span class="combo-badge">{combo_name}</span>
+                        <span class="combo-score">Score: {sc}</span>
+                    </div>
+                    """, 
+                    unsafe_allow_html=True
+                )
 
                 if sc > best_score:
                     best_score = sc

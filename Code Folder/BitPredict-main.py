@@ -158,10 +158,18 @@ def main():
             for co in combos:
                 sc = score_combination(co, trend_classification)
                 combo_name = " + ".join(co)
+                
+                if sc > 0:
+                    badge_color = "#4cd073"
+                elif sc < 0:
+                    badge_color = "#ff4b4b"
+                else:
+                    badge_color = "#ffffff"
+                    
                 st.markdown(
                     f"""
                     <div class="combo-row">
-                        <span class="combo-badge">{combo_name}</span>
+                        <span class="combo-badge" style="color: {badge_color};">{combo_name}</span>
                         <span class="combo-score">Score: {sc}</span>
                     </div>
                     """, 

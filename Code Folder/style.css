@@ -36,3 +36,27 @@ h2, h3{
 [data-testid="stHeading"] svg {
     display: none;
 }
+
+.combo-row {
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    margin-bottom: 10px;
+}
+.combo-badge {
+    background-color: #111; 
+    color: #4cd073; 
+    padding: 6px 15px; 
+    border-radius: 8px; 
+    border: 1px solid #333;
+    font-family: monospace;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.combo-score {
+    margin-left: 12px; 
+    font-size: 16px; 
+    font-weight: bold; 
+    color: #ddd;
+}

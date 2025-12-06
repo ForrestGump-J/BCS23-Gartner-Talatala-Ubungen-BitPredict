@@ -1,6 +1,4 @@
-[data-testid="stAppViewContainer"]{
-    background-image: linear-gradient(#164A26, #15304A);
-}
+
 .block-container {
     display: flex;
     flex-direction: column;
@@ -17,13 +15,23 @@ img{
     margin-left: auto;
     margin-right: auto;
 }
-.stSelectbox, .stPlotlyTable, .stImage, .stTable{
+.stSelectbox, .stPlotlyTable, .stTable{
     margin-left: auto;
     margin-right: auto;
     text-align: center;
 }
-h1, h2, h3, h4, p, div{
-    text-align: center;
+
+h4, p, div{
+    text-align: center !important;
+}
+h1{
+    text-align: center !important;
+    font-family: 'Trebuchet MS' !important;
+    font-size: 40px !important;
+}
+h2, h3{
+    text-align: center !important;
+    font-family: 'Trebuchet MS' !important;
 }
 [data-testid="stHeading"] svg {
     display: none;

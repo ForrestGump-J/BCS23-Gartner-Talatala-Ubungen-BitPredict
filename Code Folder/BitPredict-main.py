@@ -15,6 +15,10 @@ def load_css(name):
     with open(css_path, "r") as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
+def image_path(name):
+    baseim = pathlib.Path(__file__).parent
+    return str(baseim / name)
+
 
 load_css("style.css")
 
@@ -26,13 +30,13 @@ MOVEMENT_THRESHOLD = 0.05  # 5%
 
 def fetch_30day_data(symbol):
     data = exchange.fetch_ohlcv(symbol, timeframe="1d", limit=32)
-    df = pd.DataFrame(data, columns=["time","open","high","low","close","vol"])
+    df = pd.DataFrame(data, columns=["Time","Open","High","Low","Close","Vol"])
     return df
 
 
 def classify_trend(df):
-    df["pct_change"] = df["close"].pct_change()
-    avg_change = (1 + df["pct_change"]).prod() - 1
+    df["Pct_change"] = df["Close"].pct_change()
+    avg_change = (1 + df["Pct_change"]).prod() - 1
 
 
     if avg_change >= MOVEMENT_THRESHOLD:
@@ -77,6 +81,10 @@ def score_combination(combo, trend_map):
     return sum(score_map[trend_map[c]] for c in combo)
 
 def main():
+
+    col1, col2, col3= st.columns([1, 1, 1])
+    with col2:
+        st.image(image_path("BitPredict_nobg.png"))
     st.title("BitPredict: Digital Currency Insight Program")
     st.subheader("Cryptocurrency Prediction Software Prototype\n\n")
 
@@ -88,10 +96,10 @@ def main():
 
     if option:
         df = fetch_30day_data(option)
-        df["time"] = pd.to_datetime(df["time"], unit="ms")
-        df.set_index("time", inplace=True)
+        df["Time"] = pd.to_datetime(df["Time"], unit="ms")
+        df.set_index("Time", inplace=True)
 
-        df["pct_change"] = df["close"].pct_change()
+        df["Pct_change"] = df["Close"].pct_change()
 
         df_full = df.copy()
         df_display = df.iloc[1:].copy()
@@ -103,10 +111,10 @@ def main():
         st.subheader(f"30-Day Trend for {option}")
         st.write(f"**Trend Classification**: {trend}")
 
-        avg_change = round((((1 + df["pct_change"]).prod() - 1) * 100), 3)
+        avg_change = round((((1 + df["Pct_change"]).prod() - 1) * 100), 3)
         st.write(f"Total gain-loss percentage across 30 days: {avg_change}%")
 
-        st.line_chart(df_display["close"])
+        st.line_chart(df_display["Close"])
         st.dataframe(df_display)
 
         price_data = {}
@@ -116,7 +124,7 @@ def main():
         for coin in COINS:
             df_all = fetch_30day_data(coin)
             price_data[coin] = df_all
-            closing_only[coin] = df_all["close"].values
+            closing_only[coin] = df_all["Close"].values
             trend_classification[coin] = classify_trend(df_all)
 
         bulls = {c for c in COINS if trend_classification[c] == "BULL"}
@@ -131,6 +139,8 @@ def main():
         st.write("**STABLE**")
         st.dataframe(pd.DataFrame({"STABLE": list(stable)}), hide_index=True)
 
+        st.subheader("Correlation Graph for All Options")
+        st.write("Each number on the line represents the weight of the connection between the two currencies or how similarly they move, 1 being the highest and -1 being the lowest.")
     
         gra=build_graph(closing_only)
         show_graph(gra)
@@ -141,6 +151,7 @@ def main():
             show_combinations = st.button("Show", type="primary")
 
         if show_combinations:
+            st.write("A scoring system is applied to each classification to suggest the best portfolio combination for you.  \n  \nBull stock = +1  \nStable stock = 0  \nBear stock = -1")
             combos = get_portfolio_combos()
             best_score = -999
             best_com = []

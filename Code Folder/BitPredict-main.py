@@ -7,6 +7,7 @@ import itertools
 import matplotlib.pyplot as plt
 import pathlib
 
+
 st.set_page_config(layout="centered")
 
 def load_css(name):
@@ -26,25 +27,45 @@ exchange = ccxt.binanceus({
     "enableRateLimit": True,
 })
 COINS = ["BTC/USDT", "ETH/USDT", "XRP/USDT"]
-MOVEMENT_THRESHOLD = 0.05  # 5%
 
-def fetch_30day_data(symbol):
-    data = exchange.fetch_ohlcv(symbol, timeframe="1d", limit=32)
+@st.cache_data(ttl=6300)
+def fetch_data(symbol):
+    data = exchange.fetch_ohlcv(symbol, timeframe="1d", limit=463)
     df = pd.DataFrame(data, columns=["Time","Open","High","Low","Close","Vol"])
+
+    df["Time"] = pd.to_datetime(df["Time"], unit="ms")
+    df.set_index("Time", inplace=True)
+
+    df["Pct_change"] = df["Close"].pct_change()
     return df
 
 
-def classify_trend(df):
-    df["Pct_change"] = df["Close"].pct_change()
-    avg_change = (1 + df["Pct_change"]).prod() - 1
+def classify_ma_trend(df):
+    df["MA50"] = df["Close"].rolling(50).mean()
+    df["MA200"] = df["Close"].rolling(200).mean()
 
+    price = df["Close"].iloc[-1]
+    ma50 = df["MA50"].iloc[-1]
+    ma200 = df["MA200"].iloc[-1]
 
-    if avg_change >= MOVEMENT_THRESHOLD:
-        return "BULL"
-    elif avg_change <= -MOVEMENT_THRESHOLD:
-        return "BEAR"
-    else:
+    if pd.isna(ma200):
         return "STABLE"
+    
+
+    if ma50 > ma200:
+        if price > ma50:
+            return "BULL"
+        else:
+            return "CORRECTION"
+
+    elif ma50 < ma200:
+        if price > ma50:
+            return "RALLY"
+        else:
+            return "BEAR" 
+
+    
+    return "STABLE"
 
 def build_graph(price_dict):
     gr = nx.Graph()
@@ -55,7 +76,12 @@ def build_graph(price_dict):
     for i in range(len(coins)):
         for j in range(i+1, len(coins)):
             c1, c2 = coins[i], coins[j]
-            correlation = np.corrcoef(price_dict[c1], price_dict[c2])[0][1]
+
+            min_len = min(len(price_dict[c1]), len(price_dict[c2]))
+            s1 = price_dict[c1][-min_len:][-90:]
+            s2 = price_dict[c2][-min_len:][-90:]
+            
+            correlation = np.corrcoef(s1, s2)[0][1]
             gr.add_edge(c1, c2, weight = round(correlation, 2))
     
     return gr
@@ -77,7 +103,8 @@ def get_portfolio_combos():
     return combinations
 
 def score_combination(combo, trend_map):
-    score_map = {"BULL": 1, "STABLE": 0, "BEAR": -1}
+    
+    score_map = {"BULL": 2, "CORRECTION": 1, "STABLE": 0, "RALLY": -1, "BEAR": -2}
     return sum(score_map[trend_map[c]] for c in combo)
 
 def main():
@@ -88,56 +115,82 @@ def main():
     st.title("BitPredict: Digital Currency Insight Program")
     st.subheader("Cryptocurrency Prediction Software Prototype\n\n")
 
-    st.write("Fetching data...")
+    with st.spinner("Fetching data from Binance..."):
+        market_data = {}
+        for coin in COINS:
+            df_fetched = fetch_data(coin)
+            if not df_fetched.empty:
+                market_data[coin] = df_fetched
+            else:
+                st.error(f"Could not fetch data for {coin}")
 
+    if not market_data:
+        st.stop()
     option = st.selectbox("",COINS,index=None,placeholder="Select a cryptocurrency to analyze.")
 
     st.write("Displaying data for:",option)
 
     if option:
-        df = fetch_30day_data(option)
-        df["Time"] = pd.to_datetime(df["Time"], unit="ms")
-        df.set_index("Time", inplace=True)
+        df = market_data[option]
+        ma_trend = classify_ma_trend(df)
 
-        df["Pct_change"] = df["Close"].pct_change()
+        st.subheader(f"90-Day Trend for {option}")
 
-        df_full = df.copy()
-        df_display = df.iloc[1:].copy()
-        trend = classify_trend(df_full)
+        last_90 = df["Pct_change"].tail(90)
+        roi_90 = ((1 + last_90).prod() - 1) * 100
 
-        df_full = df.copy()
-        df_display = df.iloc[1:].copy()
+        current_price = df["Close"].iloc[-1]
 
-        st.subheader(f"30-Day Trend for {option}")
-        st.write(f"**Trend Classification**: {trend}")
+        st.metric(
+            label="",
+            value=f"{current_price:.2f} USDT",
+            delta=f"{roi_90:.2f}%"
+        )
 
-        avg_change = round((((1 + df["Pct_change"]).prod() - 1) * 100), 3)
-        st.write(f"Total gain-loss percentage across 30 days: {avg_change}%")
+        st.write(f"**Trend Classification**: {ma_trend}")
 
-        st.line_chart(df_display["Close"])
-        st.dataframe(df_display)
+        chart_data = df[["Close", "MA50", "MA200"]].iloc[-90:]
 
+        chart_data = chart_data.reset_index()
+
+        chart_data = chart_data.rename(columns={"Time": "Date"})
+
+        chart_data_long = chart_data.melt(
+            id_vars=["Date"], 
+            var_name="Line", 
+            value_name="Value"
+        )
+
+        st.line_chart(
+            chart_data_long,
+            x="Date",
+            y="Value",
+            color="Line"
+        )
+        st.dataframe(df.drop(columns=["MA50", "MA200"]).iloc[-90:])
+
+        # Gather all coins
         price_data = {}
         trend_classification = {}
         closing_only = {}
 
         for coin in COINS:
-            df_all = fetch_30day_data(coin)
-            price_data[coin] = df_all
+            df_all = fetch_data(coin)
             closing_only[coin] = df_all["Close"].values
-            trend_classification[coin] = classify_trend(df_all)
+            trend_classification[coin] = classify_ma_trend(df_all)
 
         bulls = {c for c in COINS if trend_classification[c] == "BULL"}
         bears = {c for c in COINS if trend_classification[c] == "BEAR"}
         stable = {c for c in COINS if trend_classification[c] == "STABLE"}
+        rally = {c for c in COINS if trend_classification[c] == "RALLY"}
+        correction = {c for c in COINS if trend_classification[c] == "CORRECTION"}
 
         st.subheader("Market Classifications")
-        st.write("**BULLS**")
-        st.dataframe(pd.DataFrame({"BULLS": list(bulls)}), hide_index=True)
-        st.write("**BEARS**")
-        st.dataframe(pd.DataFrame({"BEARS": list(bears)}), hide_index=True)
-        st.write("**STABLE**")
+        st.dataframe(pd.DataFrame({"BULL": list(bulls)}), hide_index=True)
+        st.dataframe(pd.DataFrame({"BEAR": list(bears)}), hide_index=True)
         st.dataframe(pd.DataFrame({"STABLE": list(stable)}), hide_index=True)
+        st.dataframe(pd.DataFrame({"RALLY": list(rally)}), hide_index=True)
+        st.dataframe(pd.DataFrame({"CORRECTION": list(correction)}), hide_index=True)
 
         st.subheader("Correlation Graph for All Options")
         st.write("Each number on the line represents the weight of the connection between the two currencies or how similarly they move, 1 being the highest and -1 being the lowest.")
@@ -151,20 +204,30 @@ def main():
             show_combinations = st.button("Show", type="primary")
 
         if show_combinations:
-            st.write("A scoring system is applied to each classification to suggest the best portfolio combination for you.  \n  \nBull stock = +1  \nStable stock = 0  \nBear stock = -1")
+            st.write("A scoring system is applied to each classification to suggest the best portfolio combination for you.  \n  \n**Bull stock = +2**  \n**Correction = +1**  \n**Stable stock = 0**  \n**Bear rally = -1**  \n**Bear stock = -2**")
             combos = get_portfolio_combos()
             best_score = -999
             best_com = []
             for co in combos:
                 sc = score_combination(co, trend_classification)
                 combo_name = " + ".join(co)
-                
-                if sc > 0:
+             
+                if sc >= 3: 
+                  
+                    badge_color = "#00ff00"
+                    border_style = "2px solid #00ff00"
+                elif sc > 0:
                     badge_color = "#4cd073"
-                elif sc < 0:
-                    badge_color = "#ff4b4b"
+                    border_style = "none"
+                elif sc == 0:
+                    badge_color = "#888888"
+                    border_style = "none"
+                elif sc <= -3:
+                    badge_color = "#ff0000"
+                    border_style = "2px solid #ff0000"
                 else:
-                    badge_color = "#ffffff"
+                    badge_color = "#ff4b4b"
+                    border_style = "none"
                     
                 st.markdown(
                     f"""
@@ -183,17 +246,19 @@ def main():
                     best_com.append(co)
         
             st.subheader("Recommendation:")
-            best_pretty = [", ".join(c) for c in best_com]
+            best_to_buy = [", ".join(c) for c in best_com]
+            final_string = " or ".join(best_to_buy)
 
             bulls = {c for c, t in trend_classification.items() if t == "BULL"}
 
             if best_score < 0:
-                st.error("Do not buy any coins. Market in free fall.")
-            elif best_score == 0 and len(bulls) == 0:
-                st.warning(f"Best recommendation: {best_pretty}, but buy at your own risk. Market is unsafe.")
+                st.error("Market conditions unsafe. Do not invest until better conditions are met.")
+    
             else:
-                st.success(f"Best recommendation: {best_pretty} (Score: {best_score})")
-            
-        
+                if len(bulls) == 0:
+                    st.warning(f"Current best to buy: **{final_string}**. Caution: No assets are currently in a clear Bull trend. Market is unpredictable.")
+                else:
+                    st.success(f"Best combination for your portfolio: **{final_string}**")
+
 if __name__ == "__main__":
     main()

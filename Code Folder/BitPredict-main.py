@@ -65,7 +65,7 @@ def show_graph(g):
     posi = nx.spring_layout(g, seed=42)
     labels = nx.get_edge_attributes(g, "weight")
 
-    nx.draw(g, posi, with_labels=True, node_color='cyan', node_size=1600, font_size=7, ax=ax)
+    nx.draw(g, posi, with_labels=True, node_color='lightsteelblue', node_size=1590, font_size=7.5, font_family="Courier New", ax=ax)
     nx.draw_networkx_edge_labels(g, posi, edge_labels=labels, ax=ax)
 
     st.pyplot(fig)
@@ -84,7 +84,7 @@ def main():
 
     col1, col2, col3= st.columns([1, 1, 1])
     with col2:
-        st.image(image_path("BitPredict_nobg.png"))
+        st.image(image_path("BitPredict_nobg_cropped.png"))
     st.title("BitPredict: Digital Currency Insight Program")
     st.subheader("Cryptocurrency Prediction Software Prototype\n\n")
 

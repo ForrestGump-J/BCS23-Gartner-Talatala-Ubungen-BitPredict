@@ -28,7 +28,7 @@ exchange = ccxt.binanceus({
 })
 COINS = ["BTC/USDT", "ETH/USDT", "XRP/USDT"]
 
-@st.cache_data(ttl=6300)
+@st.cache_data(ttl=6300, show_spinner=False)
 def fetch_data(symbol):
     data = exchange.fetch_ohlcv(symbol, timeframe="1d", limit=463)
     df = pd.DataFrame(data, columns=["Time","Open","High","Low","Close","Vol"])
@@ -49,7 +49,7 @@ def classify_ma_trend(df):
     ma200 = df["MA200"].iloc[-1]
 
     if pd.isna(ma200):
-        return "STABLE"
+        return "NEUTRAL"
     
 
     if ma50 > ma200:
@@ -65,7 +65,7 @@ def classify_ma_trend(df):
             return "BEAR" 
 
     
-    return "STABLE"
+    return "NEUTRAL"
 
 def build_graph(price_dict):
     gr = nx.Graph()
@@ -104,7 +104,7 @@ def get_portfolio_combos():
 
 def score_combination(combo, trend_map):
     
-    score_map = {"BULL": 2, "CORRECTION": 1, "STABLE": 0, "RALLY": -1, "BEAR": -2}
+    score_map = {"BULL": 2, "CORRECTION": 1, "NEUTRAL": 0, "RALLY": -1, "BEAR": -2}
     return sum(score_map[trend_map[c]] for c in combo)
 
 def main():
@@ -115,14 +115,16 @@ def main():
     st.title("BitPredict: Digital Currency Insight Program")
     st.subheader("Cryptocurrency Prediction Software Prototype\n\n")
 
-    with st.spinner("Fetching data from Binance..."):
-        market_data = {}
-        for coin in COINS:
-            df_fetched = fetch_data(coin)
-            if not df_fetched.empty:
-                market_data[coin] = df_fetched
-            else:
-                st.error(f"Could not fetch data for {coin}")
+    newcol1, newcol2, newcol3= st.columns([1, 1, 1])
+    with newcol2:
+        with st.spinner("Fetching data from Binance..."):
+            market_data = {}
+            for coin in COINS:
+                df_fetched = fetch_data(coin)
+                if not df_fetched.empty:
+                    market_data[coin] = df_fetched
+                else:
+                    st.error(f"Could not fetch data for {coin}")
 
     if not market_data:
         st.stop()
@@ -181,14 +183,14 @@ def main():
 
         bulls = {c for c in COINS if trend_classification[c] == "BULL"}
         bears = {c for c in COINS if trend_classification[c] == "BEAR"}
-        stable = {c for c in COINS if trend_classification[c] == "STABLE"}
+        neutral = {c for c in COINS if trend_classification[c] == "NEUTRAL"}
         rally = {c for c in COINS if trend_classification[c] == "RALLY"}
         correction = {c for c in COINS if trend_classification[c] == "CORRECTION"}
 
         st.subheader("Market Classifications")
         st.dataframe(pd.DataFrame({"BULL": list(bulls)}), hide_index=True)
         st.dataframe(pd.DataFrame({"BEAR": list(bears)}), hide_index=True)
-        st.dataframe(pd.DataFrame({"STABLE": list(stable)}), hide_index=True)
+        st.dataframe(pd.DataFrame({"NEUTRAL": list(neutral)}), hide_index=True)
         st.dataframe(pd.DataFrame({"RALLY": list(rally)}), hide_index=True)
         st.dataframe(pd.DataFrame({"CORRECTION": list(correction)}), hide_index=True)
 
@@ -199,12 +201,12 @@ def main():
         show_graph(gra)
 
         st.subheader("Want to see possible portfolio combinations?")
-        col1, col2, col3, col4, col5, col6, col7, col8, col9= st.columns([1, 1, 1, 1, 1, 1, 1, 1, 1])
-        with col5:
+        tcol1, tcol2, tcol3, tcol4, tcol5, tcol6, tcol7, tcol8, tcol9= st.columns([1, 1, 1, 1, 1, 1, 1, 1, 1])
+        with tcol5:
             show_combinations = st.button("Show", type="primary")
 
         if show_combinations:
-            st.write("A scoring system is applied to each classification to suggest the best portfolio combination for you.  \n  \n**Bull stock = +2**  \n**Correction = +1**  \n**Stable stock = 0**  \n**Bear rally = -1**  \n**Bear stock = -2**")
+            st.write("A scoring system is applied to each classification to suggest the best portfolio combination for you.  \n  \n**Bull stock = +2**  \n**Correction = +1**  \n**Neutral stock = 0**  \n**Bear rally = -1**  \n**Bear stock = -2**")
             combos = get_portfolio_combos()
             best_score = -999
             best_com = []

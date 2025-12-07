@@ -88,6 +88,7 @@ def build_graph(price_dict):
 
 def show_graph(g):
     fig, ax = plt.subplots(figsize = (6, 4))
+    ax.margins(0.10)
     posi = nx.spring_layout(g, seed=42)
     labels = nx.get_edge_attributes(g, "weight")
 

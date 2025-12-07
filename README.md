@@ -151,7 +151,7 @@ The project will be made entirely in Python. Core libraries will be used to run 
 - [x] Added Instructions on how to run code in ReadMe:
 - [x] Created working prototype with graphs, dataframes, and input
 
-## Week 15 (Dec 7–13) → Prototype Completion & Refinement
+## Week 15 (Dec 7–Dec 13) → Prototype Completion & Refinement
 - [x] **Completed the BitPredict Prototype** implementation, ensuring all targeted Discrete Structures concepts were integrated:
   - **Graph Theory** (Market correlations)
   - **Set Theory** (Grouping)

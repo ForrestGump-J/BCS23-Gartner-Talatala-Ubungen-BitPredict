@@ -28,7 +28,7 @@ exchange = ccxt.binanceus({
 })
 COINS = ["BTC/USDT", "ETH/USDT", "XRP/USDT"]
 
-@st.cache_data(ttl=6300, show_spinner=False)
+@st.cache_data(ttl=7200, show_spinner=False)
 def fetch_data(symbol):
     data = exchange.fetch_ohlcv(symbol, timeframe="1d", limit=463)
     df = pd.DataFrame(data, columns=["Time","Open","High","Low","Close","Vol"])
@@ -170,10 +170,10 @@ def main():
             y="Value",
             color="Line"
         )
-        st.dataframe(df.drop(columns=["MA50", "MA200"]).iloc[-90:])
+        st.dataframe(df.drop(columns=["MA50", "MA200"]).iloc[-90:].sort_index(ascending=False))
 
-        # Gather all coins
-        price_data = {}
+        
+        
         trend_classification = {}
         closing_only = {}
 

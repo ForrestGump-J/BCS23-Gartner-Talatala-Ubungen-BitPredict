@@ -17,7 +17,7 @@ Examples:
 - `py -m pip install -r (Filepath of requirements.txt)`
 - `python -m pip install -r (Filepath of requirements.txt)`
 3. Press enter.
-4. Once all required libraries have been installed through steps 2 and 3, type `streamlit run` and then copy the filepath of the Python file (make sure the filepath is enclosed in double quotes), and then press enter.
+4. Once all required libraries have been installed through steps 2 and 3, type `streamlit run` and then copy the filepath of the Python file (make sure the filepath is enclosed in double quotes), and then press enter. Example: `streamlit run "(filepath of Python file)"`
 
 # BitPredict Project Proposal
 Members:
